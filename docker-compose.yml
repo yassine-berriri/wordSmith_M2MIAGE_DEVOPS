@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  web:
+    build: 
+      context: ./web
+    ports:
+      - "80:80"
+    depends_on:
+      - words
+      - db
+
+  words:
+    build: 
+      context: ./words
+    ports:
+      - "8080:8080"
+
+  db:
+    build: 
+      context: ./db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust

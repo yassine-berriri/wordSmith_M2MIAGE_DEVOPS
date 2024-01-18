@@ -1,0 +1,8 @@
+# Utilisez l'image officielle PostgreSQL
+FROM postgres:latest
+
+# Définissez une variable d'environnement pour autoriser les connexions sans mot de passe
+ENV POSTGRES_HOST_AUTH_METHOD=trust
+
+# Copiez le script SQL dans le dossier d'initialisation de PostgreSQL
+COPY words.sql /docker-entrypoint-initdb.d/words.sql
