@@ -19,7 +19,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: 'yassineberriri'
-        password: 'yassine2000'
+        password: 'dckr_pat_t8W62BdV7xZJjwbtOReuA1pSbWc'
 
     - name: Build and Push Docker Images
       uses: docker/build-push-action@v2
