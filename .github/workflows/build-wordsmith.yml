@@ -1,34 +1,48 @@
-name: Docker Build and Push
 
+name: Build and Push Docker Images
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
-  pull_request:
-    types: [labeled]
+      :
+   types: [labeled]
 
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+   runs-on: ubuntu-latest
+   strategy:
+    matrix:
+     include:
+      
+image_name: db
+      dockerfile: db/dockerfile
+image_name: web
+    dockerfile: web/dockerfile
+image_name: words
+  dockerfile: words/dockerfile
+steps:
+name: Set up QEMU
+uses: docker/setup-qemu-action@v3
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+    
+name: Checkout
+    uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+    
+name: Set up Docker Buildx
+    uses: docker/setup-buildx-action@v3
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v3
-      with:
-        username: 'yassineberriri'
-        password: 'dckr_pat_t8W62BdV7xZJjwbtOReuA1pSbWc'
+    
+name: Login to Docker Hub
+    uses: docker/login-action@v3
+    with:
+      username: yassineberriri
+      password: dckr_pat_t8W62BdV7xZJjwbtOReuA1pSbWc
 
-    - name: Build and Push Docker Images
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        file: Dockerfile
-        push: true
-        tags: |
-          jpetazzo/wordsmith-db:latestDb
-          jpetazzo/wordsmith-words:latestWords
-          jpetazzo/wordsmith-web:latestWeb
-        load: false
+    
+name: Build and Push Docker Image
+    uses: docker/build-push-action@v5
+    with:
+      context: .
+      file: ./${{ matrix.dockerfile }}
+      push: true
+      tags: yassine/${{ matrix.image_name }}:db, yassine/${{ matrix.image_name }}:web, yassine/${{ matrix.image_name }}:words
+      load: false
