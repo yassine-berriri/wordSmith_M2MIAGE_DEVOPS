@@ -1,25 +1,12 @@
-version: '3'
+version: "2"
 
 services:
   web:
-    build: 
-      context: ./web
+    image: sevrius/wordsmith:web
     ports:
-      - "80:80"
-    depends_on:
-      - words
-      - db
-
-  words:
-    build: 
-      context: ./words
-    ports:
-      - "8080:8080"
-
+      - 8080:80
   db:
-    build: 
-      context: ./db
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+    image: sevrius/wordsmith:db
+  words:
+    image: sevrius/wordsmith:words
+
