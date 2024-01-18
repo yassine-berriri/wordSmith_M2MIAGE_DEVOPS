@@ -25,7 +25,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        file: dockerfile
+        file: Dockerfile
         push: true
         tags: |
           jpetazzo/wordsmith-db:latestDb
