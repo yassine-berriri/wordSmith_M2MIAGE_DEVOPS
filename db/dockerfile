@@ -6,3 +6,5 @@ ENV POSTGRES_HOST_AUTH_METHOD=trust
 
 # Copiez le script SQL dans le dossier d'initialisation de PostgreSQL
 COPY words.sql /docker-entrypoint-initdb.d/words.sql
+
+# test
