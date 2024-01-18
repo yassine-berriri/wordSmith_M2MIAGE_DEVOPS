@@ -2,8 +2,8 @@
 name: Build and Push Docker Images
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
-      :
-   types: [labeled]
+   pull_request:
+    types: [labeled]
 
 jobs:
   build-and-push:
