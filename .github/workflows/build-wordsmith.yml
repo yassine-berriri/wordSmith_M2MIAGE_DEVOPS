@@ -38,7 +38,7 @@ jobs:
     - name: Build and Push Docker Image
       uses: docker/build-push-action@v5
       with:
-        context: .
+        context: ${{ matrix.context }}
         file: ./${{ matrix.dockerfile }}
         push: true
         tags: yassine/${{ matrix.image_name }}:db, yassine/${{ matrix.image_name }}:web, yassine/${{ matrix.image_name }}:words
